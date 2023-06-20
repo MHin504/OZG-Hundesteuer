@@ -4,6 +4,10 @@ dogdict = {
   "Chihuahua": 10
 }
 
+def SplitStringFromClient(clientString):
+    seperations = clientString.split(',')
+    personInformations = seperations[0].split(';')
+    dogInformations = seperations[1].split(';')
 def printDogTax(dogTax):
     print(f"\n{dogTax}")
 
