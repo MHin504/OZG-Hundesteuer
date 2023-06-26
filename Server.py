@@ -1,7 +1,24 @@
 dogdict = {
-  "schäferhund": 15,
-  "bulldogge": 19,
-  "Chihuahua": 10
+    "american staffordshire terrier": True,
+    "pitbull terrier": True,
+    "bullterrier": True,
+    "bullmastiff": True,
+    "staffordshire bullterrier": True,
+    "cane corso": True,
+    "dogo argentino": True,
+    "bordeaux dogge": True,
+    "fila brasileiro": True,
+    "mastin espanol": True,
+    "französische bulldogge": False,
+    "labrador": False,
+    "chihuahua": False,
+    "australian shepherd": False,
+    "rottweiler": False,
+    "border collie": False,
+    "golden retriever": False,
+    "rhodesian ridgeback": False,
+    "mops":False,
+    "berner sennenhund": False
 }
 
 citydict = {
