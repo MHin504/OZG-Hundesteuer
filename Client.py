@@ -1,6 +1,6 @@
 import Server as Server
 
-def BuildStringForServer():
+def buildStringForServer():
     serverString = f"{Name};{Vorname};{GeburtsdatumHuman};{Straße};{Hausnummer};{Ort};{PLZ};,{NameDog};{GeburtsdatumDog};{Dograsse};{Ermäßigung}"
     return serverString
 
@@ -25,8 +25,7 @@ Ermäßigung = input("Steuerbefreitung/Ermäßigung (Ja/Nein)*: ")
 
 
 try:
-    serverString = BuildStringForServer()
-    dogTax = Server.getDogTax(Dograsse.lower())
-    Server.printDogTax(dogTax)
+    serverString = buildStringForServer()
+    print(Server.SplitStringFromClient(serverString))
 except:
  print("An exception occured.")

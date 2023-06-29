@@ -53,12 +53,33 @@ citydict = {
 }
 
 def SplitStringFromClient(clientString):
-    seperations = clientString.split(',')
-    personInformations = seperations[0].split(';')
-    dogInformations = seperations[1].split(';')
+    try:
+        seperations = clientString.split(',')
+        personInformations = seperations[0].split(';')
+        dogInformations = seperations[1].split(';')
+        regionTax = getRegionTax(personInformations)
+        dogRaceSeperation = getDogRaceSeperation(dogInformations, regionTax)
+        dogTax = getDogTax(dogRaceSeperation,regionTax)
+        return dogTax
+    except:
+        print("Error in SplitStringFormClient")
 def printDogTax(dogTax):
     print(f"\n{dogTax}")
 
-def getDogTax(dog):
-    dogTax = dogdict[dog]
+def getRegionTax(personalInformations):
+    regionTax = citydict[int(personalInformations[6])]
+    return regionTax
+def getDogTax(dogRaceSeperation,regionTax):
+    dogTax = None
+    if(dogRaceSeperation == True):
+       dogTax = int(regionTax) * 5
+    else:
+        dogTax = int(regionTax)
+    if(dogTax != None):
+        return dogTax
+    else:
+        return "Error in DogTax"
+
+def getDogRaceSeperation(dogRace, regionTax):
+    dogTax = dogdict[dogRace[2]]
     return dogTax
