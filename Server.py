@@ -17,7 +17,7 @@ dogdict = {
     "border collie": False,
     "golden retriever": False,
     "rhodesian ridgeback": False,
-    "mops":False,
+    "mops": False,
     "berner sennenhund": False
 }
 
@@ -52,15 +52,27 @@ citydict = {
     75059: 72
 }
 
-def SplitStringFromClient(clientString):
+def serverHandler(clientString):
+    dogInformations = splitStringFromClient(clientString, True)
+    personalInformation = splitStringFromClient(clientString, False)
+    if(dogInformations[3].lower() == "nein"):
+        regionTax = getRegionTax(personalInformation)
+        dogRaceSeperation = getDogRaceSeperation(dogInformations, regionTax)
+        dogTax = getDogTax(dogRaceSeperation, regionTax)
+
+    else:
+        dogTax = 0
+    return dogTax
+
+def splitStringFromClient(clientString, state):
     try:
         seperations = clientString.split(',')
-        personInformations = seperations[0].split(';')
-        dogInformations = seperations[1].split(';')
-        regionTax = getRegionTax(personInformations)
-        dogRaceSeperation = getDogRaceSeperation(dogInformations, regionTax)
-        dogTax = getDogTax(dogRaceSeperation,regionTax)
-        return dogTax
+        if(state):
+            dogInformation = seperations[1].split(';')
+            return dogInformation
+        else:
+            personalInformation = seperations[0].split(';')
+            return personalInformation
     except:
         print("Error in SplitStringFormClient")
 def printDogTax(dogTax):
