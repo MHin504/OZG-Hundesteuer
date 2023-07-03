@@ -13,8 +13,8 @@ Dograsse = None
 Ermäßigung = None
 
 def buildStringForServer():
-    serverString = f"{Name};{Vorname};{GeburtsdatumHuman};{Straße};{Hausnummer};{Ort};{PLZ};,{NameDog};{GeburtsdatumDog};{Dograsse};{Ermäßigung}"
-    return serverString
+    buildetStiring = f"{Name};{Vorname};{GeburtsdatumHuman};{Straße};{Hausnummer};{Ort};{PLZ};,{NameDog};{GeburtsdatumDog};{Dograsse};{Ermäßigung}"
+    return buildetStiring
 
 def getInformations():
     print("Persönliche Angaben")
