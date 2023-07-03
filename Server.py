@@ -92,6 +92,6 @@ def getDogTax(dogRaceSeperation,regionTax):
     else:
         return "Error in DogTax"
 
-def getDogRaceSeperation(dogRace, regionTax):
-    dogTax = dogdict[dogRace[2]]
+def getDogRaceSeperation(dogInformations, regionTax):
+    dogTax = dogdict[dogInformations[2]]
     return dogTax
