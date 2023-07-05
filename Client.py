@@ -17,20 +17,20 @@ def buildStringForServer():
     return buildetStiring
 
 def getInformations():
-        print("Persönliche Angaben")
-        setName()
-        setVorname()
-        setBirthHuman()
-        print("Wohnanschrift")
-        setStreet()
-        setStreetNumber()
-        setCity()
-        setPLZ()
-        print("Angaben zum Hund")
-        setNameDog()
-        setBirthDog()
-        setDogRase()
-        setErmaessigung()
+    print("Persönliche Angaben")
+    setName()
+    setVorname()
+    setBirthHuman()
+    print("Wohnanschrift")
+    setStreet()
+    setStreetNumber()
+    setCity()
+    setPLZ()
+    print("Angaben zum Hund")
+    setNameDog()
+    setBirthDog()
+    setDogRase()
+    setErmaessigung()
 
 
 def setName():
@@ -158,6 +158,6 @@ def setErmaessigung():
 try:
     getInformations()
     serverString = buildStringForServer()
-    print(f"Ihre jährliche Hundesteuer beläuft sich auf {Server.serverHandler(serverString)}€.\nBitte überwisen Sie diese auf das Ihnen Poastalich mittgeteilte Bankkonto.")
+    print(f"Ihre jährliche Hundesteuer beläuft sich auf {Server.serverHandler(serverString)}€.\nBitte überweisen Sie diese auf das Ihnen Postalisch mitgeteilte Bankkonto.")
 except:
  print("An exception occurred.")

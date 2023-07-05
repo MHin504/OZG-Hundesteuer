@@ -103,19 +103,13 @@ def checkDate(value):
     try:
         day, month, year = map(int, value.split('.'))
         geburtstag_obj = datetime.date(year, month, day)
-
-        # Ueberpruefung, ob das Datum ein gueltiges Datum ist
         try:
             date = value.strip()
             datetime.datetime.strptime(date, "%d.%m.%Y")
         except ValueError:
             return "Ungueltiges Datumsformat. Bitte geben Sie den Geburtstag im Format TT.MM.JJJJ ein.", False
-
-        # Ueberpruefung, ob das Datum in der Vergangenheit liegt
         if geburtstag_obj >= datetime.date.today():
             return "Ungueltiges Datumsformat. Der Geburtstag muss in der Vergangenheit liegen.", False
-
-        # Ueberpruefung, ob das Datum fuer den entsprechenden Monat gueltig ist (z.B. 29. Februar)
         if month == 2 and day > 28:
             leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
             if (day == 29 and not leap_year) or (day > 29):
@@ -123,7 +117,6 @@ def checkDate(value):
         return "", True
     except:
         return "Bei der Datumsüberprüfung lief etwas schief. Bitte wenden Sie sich an einen Admin", False
-
 
 def checkInput(value,nessesary, nameCheck):
     if(nessesary):
