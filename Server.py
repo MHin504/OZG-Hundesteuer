@@ -1,3 +1,5 @@
+import datetime
+
 dogdict = {
     "american staffordshire terrier": True,
     "pitbull terrier": True,
@@ -57,7 +59,7 @@ def serverHandler(clientString):
     personalInformation = splitStringFromClient(clientString, False)
     if(dogInformations[3].lower() == "nein"):
         regionTax = getRegionTax(personalInformation)
-        dogRaceSeperation = getDogRaceSeperation(dogInformations, regionTax)
+        dogRaceSeperation = getDogRaceSeperation(dogInformations)
         dogTax = getDogTax(dogRaceSeperation, regionTax)
 
     else:
@@ -92,6 +94,69 @@ def getDogTax(dogRaceSeperation,regionTax):
     else:
         return "Error in DogTax"
 
-def getDogRaceSeperation(dogInformations, regionTax):
+def getDogRaceSeperation(dogInformations):
     dogRaceSeperation = dogdict[dogInformations[2]]
     return dogRaceSeperation
+
+
+def checkDate(value):
+    try:
+        day, month, year = map(int, value.split('.'))
+        geburtstag_obj = datetime.date(year, month, day)
+
+        # Ueberpruefung, ob das Datum ein gueltiges Datum ist
+        try:
+            date = value.strip()
+            datetime.datetime.strptime(date, "%d.%m.%Y")
+        except ValueError:
+            return "Ungueltiges Datumsformat. Bitte geben Sie den Geburtstag im Format TT.MM.JJJJ ein.", False
+
+        # Ueberpruefung, ob das Datum in der Vergangenheit liegt
+        if geburtstag_obj >= datetime.date.today():
+            return "Ungueltiges Datumsformat. Der Geburtstag muss in der Vergangenheit liegen.", False
+
+        # Ueberpruefung, ob das Datum fuer den entsprechenden Monat gueltig ist (z.B. 29. Februar)
+        if month == 2 and day > 28:
+            leap_year = (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0)
+            if (day == 29 and not leap_year) or (day > 29):
+                return "Ungueltiges Datumsformat. Bitte geben Sie ein gueltiges Geburtsdatum ein.", False
+        return "", True
+    except:
+        return "Bei der Datumsüberprüfung lief etwas schief. Bitte wenden Sie sich an einen Admin", False
+
+
+def checkInput(value,nessesary, nameCheck):
+    if(nessesary):
+        if(value == None or value == ''):
+            return False
+        else:
+            if("Geburtstag" in nameCheck):
+                result = checkDate(value)
+                return result
+            elif(nameCheck == "Hunderasse"):
+                if(value in dogdict):
+                    return True
+                else:
+                    return False
+            elif(nameCheck == "Ermaessigung"):
+                if(value.lower() == "ja" or value.lower() == "nein"):
+                    return True
+                else:
+                    return False
+            elif(nameCheck == "PLZ"):
+                if(value.isnumeric and int(value.strip()) in citydict):
+                    return True
+                else:
+                    return False
+            elif(nameCheck == "Hausnummer"):
+                if(value.isnumeric()):
+                    return True
+                else:
+                    return False
+            else:
+                return True
+    else:
+        if(value != None):
+            return True
+        else:
+            return False
