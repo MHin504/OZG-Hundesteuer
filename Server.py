@@ -77,8 +77,6 @@ def splitStringFromClient(clientString, state):
             return personalInformation
     except:
         print("Error in SplitStringFormClient")
-def printDogTax(dogTax):
-    print(f"\n{dogTax}")
 
 def getRegionTax(personalInformations):
     regionTax = citydict[int(personalInformations[6])]
